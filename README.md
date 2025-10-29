@@ -2,7 +2,6 @@
 
 A production-ready weather tracking web application deployed across AWS and Azure using Infrastructure as Code (Terraform), featuring CloudFront CDN, SSL/TLS security, and automated DNS failover for disaster recovery.
 
-![Project Status](https://img.shields.io/badge/status-complete-success)
 ![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4)
 ![AWS](https://img.shields.io/badge/cloud-AWS-FF9900)
 ![Azure](https://img.shields.io/badge/cloud-Azure-0078D4)
@@ -781,21 +780,16 @@ To test failover functionality:
 ### Challenge 1: Terraform Configuration Syntax Errors
 **Problem:** Initial `terraform init` failed with multiple syntax errors:
 - `lifecycle` block was placed outside resource block
-- Variable declarations had incorrect syntax with credentials in the declaration
+- Variable declarations had incorrect syntax with credentials 
 - Azure storage account missing closing brace
 
 **Solution:** 
 - Moved `lifecycle` block inside the S3 bucket resource
 - Created separate `terraform.tfvars` file for actual credential values
-- Used `sed -n 'X,Yp' main.tf` commands to identify exact line numbers
 - Added proper closing braces and validated HCL syntax
 
 **Commands used:**
 ```bash
-# Check specific lines
-sed -n '25,35p' main.tf
-sed -n '110,120p' main.tf
-
 # Validate syntax
 terraform validate
 ```
@@ -936,47 +930,6 @@ az group delete --name rg-static-website --yes --no-wait
 # Resource Groups → rg-static-website → Delete
 ```
 
-**Key Lesson:** Azure provider has safety mechanisms to prevent accidental resource deletion. Configure provider features explicitly for desired behavior. Azure deletions can take 5-15 minutes - this is normal.
+**Key Lesson:** Azure provider has safety mechanisms to prevent accidental resource deletion. Configure provider features for desired behavior. Azure deletions can take 5-15 minutes - this is normal.
 
----
 
-### Challenge 6: CloudFront "Access Denied" Error
-**Problem:** Direct CloudFront URL (`d3j725tb4azco4.cloudfront.net`) showed XML error:
-```xml
-<Error>
-  <Code>AccessDenied</Code>
-  <Message>Access Denied</Message>
-</Error>
-```
-
-**Root Cause:** CloudFront origin was configured with S3 REST API endpoint instead of S3 website endpoint.
-
-**Wrong configuration:**
-```hcl
-origin {
-  domain_name = aws_s3_bucket.weather_app.bucket_regional_domain_name
-  # This gives: bucket.s3.amazonaws.com (REST API endpoint)
-}
-```
-
-**Correct configuration:**
-```hcl
-origin {
-  domain_name = aws_s3_bucket_website_configuration.weather_app.website_endpoint
-  # This gives: bucket.s3-website-us-east-1.amazonaws.com
-  
-  custom_origin_config {
-    http_port              = 80
-    https_port             = 443
-    origin_protocol_policy = "http-only"  # S3 website endpoints only support HTTP
-    origin_ssl_protocols   = ["TLSv1.2"]
-  }
-}
-```
-
-**Key differences:**
-- **REST endpoint**: Requires OAI (Origin Access Identity) and returns JSON/XML errors
-- **Website endpoint**: Works with public bucket policy and serves HTML with proper error pages
-
-**Key Lesson:** S3 has two types of endpoints:
-1. REST API endpoint (`.s3.amazonaws.com`)
