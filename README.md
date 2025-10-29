@@ -2,9 +2,16 @@
 
 A production-ready weather tracking web application deployed across AWS and Azure using Infrastructure as Code (Terraform), featuring CloudFront CDN, SSL/TLS security, and automated DNS failover for disaster recovery.
 
-![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4)
-![AWS](https://img.shields.io/badge/cloud-AWS-FF9900)
-![Azure](https://img.shields.io/badge/cloud-Azure-0078D4)
+# Multi-Cloud Weather Tracker with Terraform
+
+![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+![Azure](https://img.shields.io/badge/Microsoft_Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)
+![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
+![Amazon S3](https://img.shields.io/badge/Amazon_S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white)
+![CloudFront](https://img.shields.io/badge/CloudFront-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+![Route 53](https://img.shields.io/badge/Route_53-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+![SSL/TLS](https://img.shields.io/badge/SSL/TLS-0078D4?style=for-the-badge&logo=letsencrypt&logoColor=white)
+![DNS](https://img.shields.io/badge/DNS_Failover-0078D4?style=for-the-badge&logo=cloudflare&logoColor=white)
 
 
 ---
@@ -30,12 +37,27 @@ This project involves deploying a weather tracker application across AWS and Azu
 - Implement disaster recovery with Route 53 DNS failover using AWS and Azure endpoints
 - Automate the infrastructure setup with Terraform
 
-### Services Used 🛠
+### 🛠️ Tech Stack
+
+![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
+![Amazon S3](https://img.shields.io/badge/Amazon_S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white)
+![Azure Blob Storage](https://img.shields.io/badge/Azure_Blob_Storage-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)
+![CloudFront](https://img.shields.io/badge/CloudFront-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+![Route 53](https://img.shields.io/badge/Route_53-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+![SSL/TLS](https://img.shields.io/badge/SSL/TLS-0078D4?style=for-the-badge&logo=letsencrypt&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) 
+
+- **Terraform**: Automate multi-cloud infrastructure provisioning [Infrastructure as Code]
 - **AWS S3**: Host the weather app statically [Hosting]
+- **Azure Blob Storage**: Secondary hosting for failover [Hosting]
 - **AWS CloudFront**: Distribute content globally [CDN]
 - **Route 53**: Automate failover between AWS and Azure [DNS Failover]
-- **Azure Blob Storage**: Secondary hosting for failover [Hosting]
-- **Terraform**: Automate multi-cloud infrastructure provisioning [Infrastructure as Code]
+- **SSL/TLS via ACM**: Enable HTTPS encryption for secure connections [Security]
+- **HTML5, CSS3, & JavaScript**: Create interactive weather tracker interface [Frontend]
+
+
 
 ### Estimated Time & Cost ⚙️
 - **Time**: 2-3 hours
