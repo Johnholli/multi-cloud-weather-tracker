@@ -6,8 +6,6 @@ A production-ready weather tracking web application deployed across AWS and Azur
 ![AWS](https://img.shields.io/badge/cloud-AWS-FF9900)
 ![Azure](https://img.shields.io/badge/cloud-Azure-0078D4)
 
-## 🌐 Live Demo
-**[https://weather-track.site](https://weather-track.site)**
 
 ---
 
@@ -41,38 +39,23 @@ This project involves deploying a weather tracker application across AWS and Azu
 
 ### Estimated Time & Cost ⚙️
 - **Time**: 2-3 hours
-- **Cost**: ~$1 (Domain Name registration) + minimal AWS/Azure usage
+- **Cost**: ~$2 (Domain Name registration) + minimal AWS/Azure usage
 
 ### Architecture Diagram
-```
-                                    ┌─────────────┐
-                                    │   Route 53  │
-                                    │ DNS Failover│
-                                    └──────┬──────┘
-                                           │
-                        ┌──────────────────┴──────────────────┐
-                        │                                      │
-                  ┌─────▼─────┐                         ┌─────▼─────┐
-                  │   PRIMARY │                         │ SECONDARY │
-                  │    AWS    │                         │   Azure   │
-                  └─────┬─────┘                         └─────┬─────┘
-                        │                                      │
-              ┌─────────┴─────────┐                   ┌────────┴────────┐
-         ┌────▼────┐        ┌─────▼─────┐        ┌────▼────┐      ┌────▼────┐
-         │   S3    │───────▶│CloudFront │        │Resource │      │ Blob    │
-         │ Bucket  │        │    CDN    │        │  Group  │      │ Storage │
-         └─────────┘        └───────────┘        └─────────┘      └─────────┘
-              │                    │                    │                │
-              └────────────────────┴────────────────────┴────────────────┘
-                                   │
-                            ┌──────▼──────┐
-                            │   Users     │
-                            │ (HTTPS/SSL) │
-                            └─────────────┘
-```
+
+<img width="1536" height="466" alt="image" src="https://github.com/user-attachments/assets/d07cc870-5b93-426b-a9ce-bc219e338c59" />
+        
+
 
 ---
+### Final Result 
 
+<img width="1440" height="810" alt="Screenshot 2025-10-28 at 8 22 05 PM" src="https://github.com/user-attachments/assets/dde4a04d-f3c1-45ef-b963-266f267efb35" />
+
+
+<img width="1440" height="807" alt="Screenshot 2025-10-28 at 8 22 51 PM" src="https://github.com/user-attachments/assets/2dc6fafb-d79d-47f3-b087-b07bfa0ab700" />
+
+---
 ## 🔧 Prerequisites
 
 ### Step 1: Install Terraform
